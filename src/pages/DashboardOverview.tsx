@@ -60,7 +60,9 @@ const KATEGORIE_ICONS: Record<string, React.ReactNode> = {
 };
 
 function isImageUrl(url: string) {
-  return /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(url);
+  // Check explicit extension OR common image content-type hints in URL
+  return /\.(png|jpe?g|gif|webp|svg|bmp)(\?.*)?$/i.test(url) ||
+    /[?&](type|mime|content.?type)=image/i.test(url);
 }
 
 export default function DashboardOverview() {
@@ -502,14 +504,15 @@ function DetailOverlay({ record, onClose, onEdit, onDelete }: DetailOverlayProps
 // --- File Preview Thumbnail ---
 
 function FilePreview({ url, onOpen }: { url: string; onOpen: (url: string) => void }) {
-  const isImage = isImageUrl(url);
+  const [imgFailed, setImgFailed] = useState(false);
   const filename = url.split('/').pop()?.split('?')[0] ?? 'Datei';
+  const likelyImage = !imgFailed && (isImageUrl(url) || !url.match(/\.(pdf|doc|docx|xls|xlsx|csv|zip|txt)(\?.*)?$/i));
 
-  if (isImage) {
+  if (likelyImage) {
     return (
       <button
         onClick={() => onOpen(url)}
-        className="block rounded-lg overflow-hidden border border-border hover:border-primary hover:shadow-md transition-all w-24 h-20 bg-muted"
+        className="block rounded-xl overflow-hidden border border-border hover:border-primary hover:shadow-md transition-all w-28 h-24 bg-muted shrink-0"
         title="Bild in Vollansicht öffnen"
       >
         <img
@@ -517,6 +520,7 @@ function FilePreview({ url, onOpen }: { url: string; onOpen: (url: string) => vo
           alt={filename}
           className="w-full h-full object-cover"
           loading="lazy"
+          onError={() => setImgFailed(true)}
         />
       </button>
     );
@@ -538,8 +542,9 @@ function FilePreview({ url, onOpen }: { url: string; onOpen: (url: string) => vo
 // --- Lightbox ---
 
 function Lightbox({ url, onClose }: { url: string; onClose: () => void }) {
-  const isImage = isImageUrl(url);
+  const [imgFailed, setImgFailed] = useState(false);
   const filename = url.split('/').pop()?.split('?')[0] ?? 'Datei';
+  const showAsImage = !imgFailed;
 
   return (
     <div
@@ -573,11 +578,12 @@ function Lightbox({ url, onClose }: { url: string; onClose: () => void }) {
         className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
         onClick={e => e.stopPropagation()}
       >
-        {isImage ? (
+        {showAsImage ? (
           <img
             src={url}
             alt={filename}
             className="max-w-full max-h-[85vh] rounded-xl shadow-2xl object-contain"
+            onError={() => setImgFailed(true)}
           />
         ) : (
           <div className="flex flex-col items-center gap-4 p-8 rounded-2xl bg-card shadow-2xl">
