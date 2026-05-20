@@ -1,0 +1,18 @@
+{
+  "AenderungsvorschlagDialog.tsx": {
+    "titel": "z. B. Dunkelmodus für Dashboard",
+    "kategorie": "Wähle eine Kategorie",
+    "betroffener_bereich": "z. B. Übersichtsseite, Admin-Bereich",
+    "beschreibung": "Was genau sollte sich ändern? Warum? Welcher Nutzen?",
+    "einreicher_vorname": "z. B. Max",
+    "einreicher_nachname": "z. B. Müller",
+    "einreicher_email": "z. B. max@example.com",
+    "einreichungsdatum": "Wann eingereicht?",
+    "prioritaet": "z. B. Mittel, Hoch",
+    "status": "Aktueller Status",
+    "bearbeiter_vorname": "z. B. Anna",
+    "bearbeiter_nachname": "z. B. Schmidt",
+    "umsetzungskommentar": "Notizen zur Umsetzung, Blockers, Tests...",
+    "erledigungsdatum": "Wann erledigt?"
+  }
+}

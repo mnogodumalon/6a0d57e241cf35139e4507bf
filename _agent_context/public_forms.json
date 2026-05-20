@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "forms": [
+    {
+      "entity": "aenderungsvorschlag",
+      "app_id": "6a0d57d1b2df9e9b5d107877",
+      "path": "/rest/apps/6a0d57d1b2df9e9b5d107877/records",
+      "allowed_fields": [
+        "titel",
+        "kategorie",
+        "betroffener_bereich",
+        "beschreibung",
+        "einreicher_vorname",
+        "einreicher_nachname",
+        "einreicher_email",
+        "einreichungsdatum",
+        "prioritaet",
+        "status",
+        "bearbeiter_vorname",
+        "bearbeiter_nachname",
+        "umsetzungskommentar",
+        "erledigungsdatum"
+      ],
+      "pow": true,
+      "pow_difficulty": 50000,
+      "title": "Änderungsvorschlag — Formular"
+    }
+  ]
+}

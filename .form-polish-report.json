@@ -1,0 +1,10 @@
+{
+  "entities": {
+    "Änderungsvorschlag": {
+      "placeholders_set": 14,
+      "defaults_keys": ["einreichungsdatum", "status"],
+      "computed_keys": [],
+      "reason": "Reine Change-Management-Stammdaten ohne numerische Beziehungen. Keine Mengen, Preise, Stundensätze oder applookups mit numerischen Targets vorhanden. Date-Paare nur für Start/Erledigung, nicht für Differenzen."
+    }
+  }
+}
