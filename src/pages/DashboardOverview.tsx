@@ -678,9 +678,10 @@ function KanbanCard({ record, onEdit, onDelete, onStatusChange, onDetail }: Kanb
       {/* Titel — klickbarer Link */}
       <button
         onClick={onDetail}
-        className="w-full text-left text-sm font-semibold text-foreground leading-snug mb-1 line-clamp-2 hover:text-primary hover:underline underline-offset-2 transition-colors"
+        className="w-full text-left text-sm font-semibold leading-snug mb-1 transition-colors text-orange-500 hover:text-orange-600 hover:underline underline-offset-2 flex items-start gap-1"
       >
-        {fields.titel ?? '(Kein Titel)'}
+        <span className="line-clamp-2 min-w-0 flex-1">{fields.titel ?? '(Kein Titel)'}</span>
+        <IconExternalLink size={12} className="shrink-0 mt-0.5 opacity-70" />
       </button>
 
       {/* Bereich */}
